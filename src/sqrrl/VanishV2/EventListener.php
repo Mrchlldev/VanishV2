@@ -251,6 +251,9 @@ class EventListener implements Listener {
      * @priority LOWEST
      */
     public function onBlockInteract(PlayerInteractEvent $event){
+        if($event->isCancelled()){
+            return;
+        }
         $player = $event->getPlayer();
         if(in_array($player->getName(), VanishV2::$vanish) && $event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK){
             $position = $event->getBlock()->getPosition();
